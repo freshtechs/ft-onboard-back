@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.get('/', function (req, res) {
     res.send('hello world')
     })
-    
+
 app.use('/api/auth', userRoutes)
 app.use('/api/clients', clientRoutes)
 
@@ -39,7 +39,7 @@ const dbURI = process.env.MONGODB_URI
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((res) => {
         // only listen for requests once database data has loaded
-        app.listen(process.env.PORT || 5000, () => console.log("Server is up on port " + (process.env.PORT || 5000)))
+        app.listen(process.env.MGPORT || 5000, () => console.log("Server is up on port " + (process.env.MGPORT || 5000)))
     })
     .catch(err => console.log(err))
 
