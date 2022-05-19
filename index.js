@@ -30,6 +30,7 @@ app.use((req, res, next) => {
 app.get('/', function (req, res) {
     res.send('hello world')
     })
+    
 app.use('/api/auth', userRoutes)
 app.use('/api/clients', clientRoutes)
 
