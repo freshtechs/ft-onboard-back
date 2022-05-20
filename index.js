@@ -15,7 +15,15 @@ app.use(bodyParser.json(), urlencodedParser)
 
 
 app.use((req, res, next) => {
-    const allowedOrigins = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://127.0.0.1:9000', 'http://localhost:9000', 'https://ft-potenciales.netlify.app', 'https://aqueous-journey-82080.herokuapp.com', 'https://potenciales.herokuapp.com/'];
+    const allowedOrigins = [
+        'http://127.0.0.1:3000',
+        'http://localhost:3000',
+        'http://127.0.0.1:9000',
+        'http://localhost:9000',
+        'https://ft-potenciales.netlify.app',
+        'https://aqueous-journey-82080.herokuapp.com',
+        'https://ft-potenciales.herokuapp.com',
+        'https://potenciales.herokuapp.com/'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
