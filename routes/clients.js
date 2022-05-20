@@ -38,7 +38,7 @@ router.post("", async (req, res) => {
             rangoMaximoDePago: req.body.rangoMaximoDePago,
             esPotencial: req.body.esPotencial,
             yaTieneServicio: req.body.yaTieneServicio,
-            calificacion:  req.body.calificacion,
+            calificacion: req.body.calificacion,
             calificacionCalidadPrecio: req.body.calificacionCalidadPrecio,
             loRemplazaria: req.body.loRemplazaria,
             loAdquiriria: req.body.loAdquiriria,
@@ -57,6 +57,7 @@ router.post("", async (req, res) => {
             });
 
             return res.status(400).send(errors);
+            console.log(errors)
         }
         res.status(500).json({ message: error.message })
     }
