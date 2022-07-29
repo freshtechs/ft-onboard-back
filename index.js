@@ -35,6 +35,10 @@ app.use((req, res, next) => {
 });
 
 
+app.get("/service-worker.js", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "public", "service-worker.js"));
+});
+
 app.get('/', function (req, res) {
     res.send('hello world')
 })

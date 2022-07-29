@@ -25,8 +25,8 @@ const clientSchema = mongoose.Schema({
     calificacion: { type: String, required: false, default: '' },
     calificacionCalidadPrecio: { type: String, required: false, default: '' },
     loRemplazaria: { type: String, required: false, default: '' },
-    loAdquiriria: { type: String, required: true, default: '' },
-    loRecomendaria: { type: String, required: true, default: '' },
+    loAdquiriria: { type: String, required: false, default: '' },
+    loRecomendaria: { type: String, required: false, default: '' },
     vendedor: { type: String, required: true }
 }, { timestamps: true })
 
