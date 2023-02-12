@@ -38,8 +38,16 @@ const clientSchema = mongoose.Schema({
     comprobanteURL: { type: String, required: false },
     numeroReferencia: { type: String, required: false },
     titularCuenta: { type: String, required: false },
-
-    esPotencial: { type: Boolean, required: false, default: true },
+    contratoURL: { type: String, required: false },
+    reporteURL: { type: String, required: false },
+    bienvenidaURL: { type: String, required: false },
+    reciboURL: { type: String, required: false },
+    idCRM: { type: Number, required: false },
+    serviceIdCRM: { type: String, required: false },
+    facturaIdCRM: { type: String, required: false },
+    enviadoCorreoCliente: { type: Boolean, required: false },
+    enviadoCorreoInterno: { type: Boolean, required: false },
+    estaActivado: { type: Boolean, required: false, default: false },
     vendedor: { type: String, required: true }
 }, { timestamps: true })
 
