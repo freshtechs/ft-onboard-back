@@ -21,6 +21,7 @@ app.use((req, res, next) => {
         'http://127.0.0.1:9000',
         'http://localhost:9000',
         'https://ft-potenciales.netlify.app',
+        'https://ft-onboard-back.onrender.com',
         'https://aqueous-journey-82080.herokuapp.com',
         'https://ft-potenciales.herokuapp.com',
         'https://potenciales.herokuapp.com/'];
