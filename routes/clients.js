@@ -32,7 +32,15 @@ const handleCreateClient = async (req, res) => {
     }
 };
 
+const handleUpdateClient = async (req, res) => {
+    const { id } = req.params;
+    await Client.updateOne({ id }, req.body);
+    const updatedClient = await Client.findById(id);
+    return res.status(200).json(updatedClient);
+}
+
 router.get("", verifyJWT, handleGetClients);
 router.post("", handleCreateClient);
+router.put(":id", handleUpdateClient);
 
 module.exports = router;
