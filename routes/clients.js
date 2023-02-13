@@ -40,8 +40,8 @@ const handleUpdateClient = async (req, res) => {
 }
 
 const handleGetUniqueClient = async (req, res) => {
-    const { id } = req.params;
-    const client = await Client.findById(id);
+    const { _id } = req.params;
+    const client = await Client.findById(_id);
     return res.status(200).json(client);
 }
 
