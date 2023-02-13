@@ -40,14 +40,14 @@ const handleUpdateClient = async (req, res) => {
 }
 
 const handleGetUniqueClient = async (req, res) => {
-    const { _id } = req.params;
-    const client = await Client.findById(_id);
+    const { id } = req.params;
+    const client = await Client.findById(id);
     return res.status(200).json(client);
 }
 
 router.get("", verifyJWT, handleGetClients);
 router.post("", handleCreateClient);
-router.get(":id", handleGetUniqueClient);
-router.put(":id", handleUpdateClient);
+router.get("/:id", handleGetUniqueClient);
+router.put("/:id", handleUpdateClient);
 
 module.exports = router;
