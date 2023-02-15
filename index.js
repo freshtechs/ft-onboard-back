@@ -5,6 +5,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const userRoutes = require('./routes/users');
 const clientRoutes = require('./routes/clients');
+const pdfRoutes = require('./routes/pdf')
 
 const app = express()
 
@@ -46,6 +47,7 @@ app.get('/', function (req, res) {
 
 app.use('/api/auth', userRoutes)
 app.use('/api/clients', clientRoutes)
+app.use('api/create-pdf', pdfRoutes)
 
 // connects to mongoDB database
 const dbURI = process.env.MONGODB_URI
