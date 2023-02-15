@@ -48,6 +48,8 @@ app.get('/', function (req, res) {
 app.use('/api/auth', userRoutes)
 app.use('/api/clients', clientRoutes)
 app.use('api/create-pdf', pdfRoutes)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // connects to mongoDB database
 const dbURI = process.env.MONGODB_URI
