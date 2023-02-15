@@ -908,7 +908,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
     </p>
 
     <p class="c6 c9"><span class="c22 c7"></span></p>
-    <p class="c6"><span class="c1">Entre el(la) ciudadano(a) </span><span class="c2">NAT_CLIENTE_NOMBRE</span><span
+    <p class="c6"><span class="c1">Entre el(la) ciudadano(a) </span><span class="c2">${name}</span><span
             class="c2">,</span><span class="c1"> venezolano(a), mayor de edad, titular de c&eacute;dula de
             identidad No. </span><span class="c2">{{cedula}}</span><span class="c2">, </span><span
             class="c1">domiciliado(a) en el municipio Chacao del estado Miranda, precisamente, en Caracas, quien a los
@@ -1338,7 +1338,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
             class="c2">CONTACTO: EL CLIENTE </span><span class="c1">se&ntilde;ala que, por su parte, designa como
             responsable de la ejecuci&oacute;n de este contrato, as&iacute; como tambi&eacute;n la atenci&oacute;n al
             personal t&eacute;cnico y de la comunicaci&oacute;n con </span><span class="c2">FRESH TECHS</span><span
-            class="c1">, al ciudadano </span><span class="c1">NAT_CLIENTE_NOMBRE</span><span class="c1">,
+            class="c1">, al ciudadano </span><span class="c1">${name}</span><span class="c1">,
             venezolano(a), mayor de edad, titular de c&eacute;dula de identidad No. </span><span
             class="c1">{{cedula}}</span><span class="c1">, correo electr&oacute;nico: </span><span
             class="c1">_CON_CORREO</span><span class="c1"> y n&uacute;mero de tel&eacute;fono: </span><span

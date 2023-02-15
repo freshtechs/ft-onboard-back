@@ -15,26 +15,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json(), urlencodedParser)
 
 
-app.use((req, res, next) => {
-    const allowedOrigins = [
-        'http://127.0.0.1:3000',
-        'http://localhost:3000',
-        'http://127.0.0.1:9000',
-        'http://localhost:9000',
-        'https://ft-potenciales.netlify.app',
-        'https://ft-onboard-back.onrender.com',
-        'https://aqueous-journey-82080.herokuapp.com',
-        'https://ft-potenciales.herokuapp.com',
-        'https://potenciales.herokuapp.com/'];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-access-token, Accept, X-Requested-With, User-Agent');
-    res.header('Access-Control-Allow-Credentials', true);
-    return next();
-});
+app.use(cors());
 
 
 app.get("/service-worker.js", (req, res) => {
@@ -47,7 +28,7 @@ app.get('/', function (req, res) {
 
 app.use('/api/auth', userRoutes)
 app.use('/api/clients', clientRoutes)
-app.use('api/create-pdf', pdfRoutes)
+app.use('/api/create-pdf', pdfRoutes)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
