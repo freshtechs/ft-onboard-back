@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const generatePdf = async (req, res) => {
-    console.log(req.body)
+    message = req.body
+    return res.status(200).json(message);
 }
 
 
