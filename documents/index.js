@@ -169,9 +169,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
             list-style-type: none
         }
 
-        .lst-kix_list_4-8>li:before {
-            content: "\0025aa  "
-        }
+    
 
         .lst-kix_list_4-7>li:before {
             content: "o  "
@@ -345,9 +343,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
             counter-reset: lst-ctn-kix_list_2-5 0
         }
 
-        .lst-kix_list_4-0>li:before {
-            content: "\0025cf  "
-        }
+        
 
         .lst-kix_list_2-6>li {
             counter-increment: lst-ctn-kix_list_2-6
@@ -375,22 +371,6 @@ module.exports = ({ name, price1, price2, receiptId }) => {
 
         .lst-kix_list_1-5>li {
             counter-increment: lst-ctn-kix_list_1-5
-        }
-
-        .lst-kix_list_4-3>li:before {
-            content: "\0025cf  "
-        }
-
-        .lst-kix_list_4-5>li:before {
-            content: "\0025aa  "
-        }
-
-        .lst-kix_list_4-2>li:before {
-            content: "\0025aa  "
-        }
-
-        .lst-kix_list_4-6>li:before {
-            content: "\0025cf  "
         }
 
         .lst-kix_list_1-8>li {
