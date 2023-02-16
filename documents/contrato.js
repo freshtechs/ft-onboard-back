@@ -1,4 +1,7 @@
-module.exports = ({ name, price1, price2, receiptId }) => {
+module.exports = ({ nombre, cedula, correo, telefono, montoInstalacion,
+    serverServiciosContratados, mensualidad, velocidad, day, month, year,
+    modeloONU, macONU, serialONU, nombreEdificio, numeroApto
+}) => {
     const today = new Date();
     return `
 <!doctype html>
@@ -895,22 +898,20 @@ module.exports = ({ name, price1, price2, receiptId }) => {
 </head>
 
 <body class="c24 doc-content">
-    <p class="c14 c17 c30">
-        <span
-            style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 518.90px; height: 71.44px;">
-            <img alt="" src="https://drive.google.com/uc?export=download&id=1qck3XGGfrc53INjpnfRhb9WHIR3zEs3j"
-                style="width: 518.90px; height: 71.44px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-                title="">
-        </span>
-    </p>
+    <span
+        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 518.90px; height: 71.44px;">
+        <img alt="" src="https://drive.google.com/uc?export=download&id=1qck3XGGfrc53INjpnfRhb9WHIR3zEs3j"
+            style="width: 518.90px; height: 71.44px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+            title="">
+    </span>
     <p class="c6 c9"><span class="c22 c7"></span></p>
     <p class="c14 c17"><span class="c7 c10">CONTRATO DE SERVICIO DE INTERNET PARA CLIENTES DE FRESH TECHS C.A.</span>
     </p>
 
     <p class="c6 c9"><span class="c22 c7"></span></p>
-    <p class="c6"><span class="c1">Entre el(la) ciudadano(a) </span><span class="c2">${name}</span><span
+    <p class="c6"><span class="c1">Entre el(la) ciudadano(a) </span><span class="c2">${nombre}</span><span
             class="c2">,</span><span class="c1"> venezolano(a), mayor de edad, titular de c&eacute;dula de
-            identidad No. </span><span class="c2">{{cedula}}</span><span class="c2">, </span><span
+            identidad No. </span><span class="c2">${cedula}</span><span class="c2">, </span><span
             class="c1">domiciliado(a) en el municipio Chacao del estado Miranda, precisamente, en Caracas, quien a los
             efectos del presente contrato ser&aacute; denominado &ldquo;</span><span class="c2">EL CLIENTE</span><span
             class="c1">&rdquo; y la sociedad mercantil </span><span class="c2">FRESH TECHS, C.A., </span><span
@@ -1100,7 +1101,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
             cambiar (incremento o disminuci&oacute;n) su ancho de
             banda contratado, enviar&aacute; una solicitud detallada al correo electr&oacute;nico </span><span
             class="c1 c4"><a class="c13"
-                href="mailto:ventas@freshtechs.com.ve">ventasccs@freshtechs.com.ve</a></span><span class="c1">,
+                href="mailto:ventasccs@freshtechs.com.ve">ventasccs@freshtechs.com.ve</a></span><span class="c1">,
         </span><span class="c2">FRESH TECHS</span><span class="c1 c7">, gestionar&aacute; la solicitud en un periodo no
             mayor a cinco (05) d&iacute;as h&aacute;biles, remitiendo al cliente la informaci&oacute;n sobre su
             solicitud, precio y forma de proceder.</span></p>
@@ -1282,8 +1283,8 @@ module.exports = ({ name, price1, price2, receiptId }) => {
             cambiar los equipos suministrados por </span><span class="c2">FRESH TECHS</span><span class="c1">,
             as&iacute; como tampoco podr&aacute; instalarlos, reprogramarlos, conectarlos o desconectarlos, sin previa
             autorizaci&oacute;n de la </span><span class="c2">FRESH TECHS</span><span class="c1">. En Maracaibo, a los
-            VEN_FECHA_CONTRATO_DIA d&iacute;as del mes </span><span class="c1">VEN_FECHA_CONTRATO_MES</span><span
-            class="c1 c7"> del a&ntilde;o VEN_FECHA_CONTRATO_ANO. Se expidieron dos ejemplares al mismo efecto y a
+            ${day} d&iacute;as del mes </span><span class="c1">${month}</span><span
+            class="c1 c7"> del a&ntilde;o ${year}. Se expidieron dos ejemplares al mismo efecto y a
             un solo tenor.</span></p>
     <p class="c3"><span class="c1 c7"></span></p>
     <p class="c3"><span class="c8 c7"></span></p>
@@ -1297,12 +1298,12 @@ module.exports = ({ name, price1, price2, receiptId }) => {
             cuestiones: </span><span class="c2">PLAN CONTRATADO: </span><span class="c1">Luego de explicar
             descriptivamente las bondades de los servicios y planes de </span><span class="c2">FRESH TECHS a EL
             CLIENTE</span><span class="c1">, este &uacute;ltimo ha elegido el PLAN </span><span
-            class="c1">_SERVICIO</span><span class="c1">, bajo la modalidad de fibra &oacute;ptica, con una capacidad de
-        </span><span class="c1">_VELOCIDAD</span><span class="c1">, debido a que este se adapta y configura a sus
+            class="c1">${serverServiciosContratados}</span><span class="c1">, bajo la modalidad de fibra &oacute;ptica, con una capacidad de
+        </span><span class="c1">${velocidad}</span><span class="c1">, debido a que este se adapta y configura a sus
             exigencias y confort. </span><span class="c2">PRECIO: </span><span class="c1">El costo de instalaci&oacute;n
-            y activaci&oacute;n es de </span><span class="c1">_INSTALACION</span><span class="c1"> $(USD) , y las
+            y activaci&oacute;n es de </span><span class="c1">${montoInstalacion}</span><span class="c1"> $(USD) , y las
             mensualidades correspondientes se han establecido en la cantidad de </span><span
-            class="c1">_MENSUALIDAD</span><span class="c1"> $(USD) , en esta oportunidad. Ambos montos ser&aacute;n
+            class="c1">${mensualidad}</span><span class="c1"> $(USD) , en esta oportunidad. Ambos montos ser&aacute;n
             reflejados en la facturaci&oacute;n correspondiente. </span><span class="c2 c7">EQUIPO INSTALADO:</span></p>
     <p class="c6 c9"><span class="c2 c7"></span></p><a id="t.9476fdb0ae156d57fab8304552ce05ba0f5592d3"></a><a
         id="t.0"></a>
@@ -1320,13 +1321,13 @@ module.exports = ({ name, price1, price2, receiptId }) => {
         </tr>
         <tr class="c11">
             <td class="c12" colspan="1" rowspan="1">
-                <p class="c15"><span class="c2">_1_EQUIPO</span></p>
+                <p class="c15"><span class="c2">${modeloONU}</span></p>
             </td>
             <td class="c31" colspan="1" rowspan="1">
-                <p class="c15"><span class="c2">_1_MAC</span></p>
+                <p class="c15"><span class="c2">${macONU}</span></p>
             </td>
             <td class="c23" colspan="1" rowspan="1">
-                <p class="c15"><span class="c2 c7">_1_SERIAL</span></p>
+                <p class="c15"><span class="c2 c7">${serialONU}</span></p>
             </td>
         </tr>
     </table>
@@ -1334,17 +1335,17 @@ module.exports = ({ name, price1, price2, receiptId }) => {
     <p class="c6"><span class="c2">INSTALACI&Oacute;N: </span><span class="c1">Se realizar&aacute; una vez verificado el
             correspondiente pago, y la misma ser&aacute; realizada por el personal t&eacute;cnico designado por
         </span><span class="c2">FRESH TECHS</span><span class="c1">, en el sitio ubicado en Av. Francisco Solano, Sans
-            Souci, </span><span class="c1">_DIR_INSTALACION1</span><span class="c1">, Chacao, Caracas. </span><span
+            Souci, </span><span class="c1">"Edif. " + ${nombreEdificio} + " apto #" + ${numeroApto}1</span><span class="c1">, Chacao, Caracas. </span><span
             class="c2">CONTACTO: EL CLIENTE </span><span class="c1">se&ntilde;ala que, por su parte, designa como
             responsable de la ejecuci&oacute;n de este contrato, as&iacute; como tambi&eacute;n la atenci&oacute;n al
             personal t&eacute;cnico y de la comunicaci&oacute;n con </span><span class="c2">FRESH TECHS</span><span
-            class="c1">, al ciudadano </span><span class="c1">${name}</span><span class="c1">,
+            class="c1">, al ciudadano </span><span class="c1">${nombre}</span><span class="c1">,
             venezolano(a), mayor de edad, titular de c&eacute;dula de identidad No. </span><span
-            class="c1">{{cedula}}</span><span class="c1">, correo electr&oacute;nico: </span><span
-            class="c1">_CON_CORREO</span><span class="c1"> y n&uacute;mero de tel&eacute;fono: </span><span
-            class="c1">_CON_TELEFONO1</span><span class="c1">. Asimismo, para cualquier otro acto o correspondencia,
+            class="c1">${cedula}</span><span class="c1">, correo electr&oacute;nico: </span><span
+            class="c1">${correo}</span><span class="c1"> y n&uacute;mero de tel&eacute;fono: </span><span
+            class="c1">${telefono}</span><span class="c1">. Asimismo, para cualquier otro acto o correspondencia,
         </span><span class="c2">EL CLIENTE</span><span class="c1"> se&ntilde;ala para tales el efecto la siguiente
-            ubicaci&oacute;n: Av. Francisco Solano, Sans Souci, </span><span class="c1">_DIR_INSTALACION1</span><span
+            ubicaci&oacute;n: Av. Francisco Solano, Sans Souci, </span><span class="c1">"Edif. " + ${nombreEdificio} + " apto #" + ${numeroApto}1</span><span
             class="c1 c7">, Chacao, Caracas.</span></p>
     <p class="c3"><span class="c0"></span></p>
     <p class="c3"><span class="c0"></span></p>
@@ -1370,7 +1371,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
                 </span>
             </div>
             <div style="margin-left: 174px;margin-top: 20px;width: 150px;height: 50px;">
-                <span class="c0">{firmaCliente}</span>
+                <span class="c0">${firmaCliente}</span>
             </div>
         </div>
         <div class="container">
