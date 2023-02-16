@@ -1,6 +1,22 @@
-module.exports = ({ nombre, cedula, correo, telefono, montoInstalacion,
-    serverServiciosContratados, mensualidad, velocidad, day, month, year,
-    modeloONU, macONU, serialONU, nombreEdificio, numeroApto
+module.exports = ({
+    fullName,
+    pdfValCedula,
+    email,
+    telefono,
+    pdfValServiciosContratados,
+    velocidad,
+    mensualidad,
+    day,
+    month,
+    year,
+    pdfValModeloONU,
+    pdfValSerialONU,
+    pdfValMontoInstalacion,
+    pdfValModeloONU,
+    pdfValMacONU,
+    nombreDeVivienda,
+    numeroDeVivienda,
+    firmaCliente
 }) => {
     const today = new Date();
     return `
@@ -909,9 +925,9 @@ module.exports = ({ nombre, cedula, correo, telefono, montoInstalacion,
     </p>
 
     <p class="c6 c9"><span class="c22 c7"></span></p>
-    <p class="c6"><span class="c1">Entre el(la) ciudadano(a) </span><span class="c2">${nombre}</span><span
+    <p class="c6"><span class="c1">Entre el(la) ciudadano(a) </span><span class="c2">${fullName}</span><span
             class="c2">,</span><span class="c1"> venezolano(a), mayor de edad, titular de c&eacute;dula de
-            identidad No. </span><span class="c2">${cedula}</span><span class="c2">, </span><span
+            identidad No. </span><span class="c2">${pdfValCedula}</span><span class="c2">, </span><span
             class="c1">domiciliado(a) en el municipio Chacao del estado Miranda, precisamente, en Caracas, quien a los
             efectos del presente contrato ser&aacute; denominado &ldquo;</span><span class="c2">EL CLIENTE</span><span
             class="c1">&rdquo; y la sociedad mercantil </span><span class="c2">FRESH TECHS, C.A., </span><span
@@ -1298,10 +1314,10 @@ module.exports = ({ nombre, cedula, correo, telefono, montoInstalacion,
             cuestiones: </span><span class="c2">PLAN CONTRATADO: </span><span class="c1">Luego de explicar
             descriptivamente las bondades de los servicios y planes de </span><span class="c2">FRESH TECHS a EL
             CLIENTE</span><span class="c1">, este &uacute;ltimo ha elegido el PLAN </span><span
-            class="c1">${serverServiciosContratados}</span><span class="c1">, bajo la modalidad de fibra &oacute;ptica, con una capacidad de
+            class="c1">${pdfValServiciosContratados}</span><span class="c1">, bajo la modalidad de fibra &oacute;ptica, con una capacidad de
         </span><span class="c1">${velocidad}</span><span class="c1">, debido a que este se adapta y configura a sus
             exigencias y confort. </span><span class="c2">PRECIO: </span><span class="c1">El costo de instalaci&oacute;n
-            y activaci&oacute;n es de </span><span class="c1">${montoInstalacion}</span><span class="c1"> $(USD) , y las
+            y activaci&oacute;n es de </span><span class="c1">${pdfValMontoInstalacion}</span><span class="c1"> $(USD) , y las
             mensualidades correspondientes se han establecido en la cantidad de </span><span
             class="c1">${mensualidad}</span><span class="c1"> $(USD) , en esta oportunidad. Ambos montos ser&aacute;n
             reflejados en la facturaci&oacute;n correspondiente. </span><span class="c2 c7">EQUIPO INSTALADO:</span></p>
@@ -1321,13 +1337,13 @@ module.exports = ({ nombre, cedula, correo, telefono, montoInstalacion,
         </tr>
         <tr class="c11">
             <td class="c12" colspan="1" rowspan="1">
-                <p class="c15"><span class="c2">${modeloONU}</span></p>
+                <p class="c15"><span class="c2">${pdfValModeloONU}</span></p>
             </td>
             <td class="c31" colspan="1" rowspan="1">
-                <p class="c15"><span class="c2">${macONU}</span></p>
+                <p class="c15"><span class="c2">${pdfValMacONU}</span></p>
             </td>
             <td class="c23" colspan="1" rowspan="1">
-                <p class="c15"><span class="c2 c7">${serialONU}</span></p>
+                <p class="c15"><span class="c2 c7">${pdfValSerialONU}</span></p>
             </td>
         </tr>
     </table>
@@ -1335,17 +1351,17 @@ module.exports = ({ nombre, cedula, correo, telefono, montoInstalacion,
     <p class="c6"><span class="c2">INSTALACI&Oacute;N: </span><span class="c1">Se realizar&aacute; una vez verificado el
             correspondiente pago, y la misma ser&aacute; realizada por el personal t&eacute;cnico designado por
         </span><span class="c2">FRESH TECHS</span><span class="c1">, en el sitio ubicado en Av. Francisco Solano, Sans
-            Souci, </span><span class="c1">"Edif. " + ${nombreEdificio} + " apto #" + ${numeroApto}1</span><span class="c1">, Chacao, Caracas. </span><span
+            Souci, </span><span class="c1">"Edif. " + ${nombreDeVivienda} + " apto #" + ${numeroDeVivienda}1</span><span class="c1">, Chacao, Caracas. </span><span
             class="c2">CONTACTO: EL CLIENTE </span><span class="c1">se&ntilde;ala que, por su parte, designa como
             responsable de la ejecuci&oacute;n de este contrato, as&iacute; como tambi&eacute;n la atenci&oacute;n al
             personal t&eacute;cnico y de la comunicaci&oacute;n con </span><span class="c2">FRESH TECHS</span><span
-            class="c1">, al ciudadano </span><span class="c1">${nombre}</span><span class="c1">,
+            class="c1">, al ciudadano </span><span class="c1">${fullName}</span><span class="c1">,
             venezolano(a), mayor de edad, titular de c&eacute;dula de identidad No. </span><span
-            class="c1">${cedula}</span><span class="c1">, correo electr&oacute;nico: </span><span
-            class="c1">${correo}</span><span class="c1"> y n&uacute;mero de tel&eacute;fono: </span><span
+            class="c1">${pdfValCedula}</span><span class="c1">, correo electr&oacute;nico: </span><span
+            class="c1">${email}</span><span class="c1"> y n&uacute;mero de tel&eacute;fono: </span><span
             class="c1">${telefono}</span><span class="c1">. Asimismo, para cualquier otro acto o correspondencia,
         </span><span class="c2">EL CLIENTE</span><span class="c1"> se&ntilde;ala para tales el efecto la siguiente
-            ubicaci&oacute;n: Av. Francisco Solano, Sans Souci, </span><span class="c1">"Edif. " + ${nombreEdificio} + " apto #" + ${numeroApto}1</span><span
+            ubicaci&oacute;n: Av. Francisco Solano, Sans Souci, </span><span class="c1">"Edif. " + ${nombreDeVivienda} + " apto #" + ${numeroDeVivienda}1</span><span
             class="c1 c7">, Chacao, Caracas.</span></p>
     <p class="c3"><span class="c0"></span></p>
     <p class="c3"><span class="c0"></span></p>
