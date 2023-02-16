@@ -12,7 +12,6 @@ module.exports = ({
     pdfValModeloONU,
     pdfValSerialONU,
     pdfValMontoInstalacion,
-    pdfValModeloONU,
     pdfValMacONU,
     nombreDeVivienda,
     numeroDeVivienda,
