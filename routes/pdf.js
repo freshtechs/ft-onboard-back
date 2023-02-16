@@ -5,7 +5,6 @@ const contratoTemplate = require('../documents/contrato');
 const router = express.Router();
 
 const generateContrato = async (req, res) => {
-    console.log(req.body)
     pdf.create(contratoTemplate(req.body), { format: 'Legal' }).toFile('./documents/generated/contrato.pdf', (err) => {
         if (err) {
             return console.log('error');

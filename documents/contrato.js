@@ -15,9 +15,8 @@ module.exports = ({
     pdfValMacONU,
     nombreDeVivienda,
     numeroDeVivienda,
-    firmaCliente
+    firmaClienteURL
 }) => {
-    const today = new Date();
     return `
 <!doctype html>
 <html>
@@ -1386,7 +1385,7 @@ module.exports = ({
                 </span>
             </div>
             <div style="margin-left: 174px;margin-top: 20px;width: 150px;height: 50px;">
-                <span class="c0">${firmaCliente}</span>
+                <img src="${firmaClienteURL}">
             </div>
         </div>
         <div class="container">
