@@ -15,7 +15,7 @@ module.exports = ({
     pdfValMacONU,
     nombreDeVivienda,
     numeroDeVivienda,
-    firmaClienteURL
+    firmaURL
 }) => {
     return `
 <!doctype html>
@@ -1385,7 +1385,7 @@ module.exports = ({
                 </span>
             </div>
             <div style="margin-left: 174px;margin-top: 20px;width: 150px;height: 50px;">
-                <img src="${firmaClienteURL}">
+                <img src="${firmaURL}">
             </div>
         </div>
         <div class="container">
