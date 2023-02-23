@@ -33,14 +33,14 @@ const handleCreateClient = async (req, res) => {
 };
 
 const handleUpdateClient = async (req, res) => {
-    const { id } = req.params;
-    await Client.updateOne({ id }, req.body);
+    const id = req.params.id;
+    await Client.findByIdAndUpdate(id, req.body);
     const updatedClient = await Client.findById(id);
     return res.status(200).json(updatedClient);
 }
 
 const handleGetUniqueClient = async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id;
     const client = await Client.findById(id);
     return res.status(200).json(client);
 }

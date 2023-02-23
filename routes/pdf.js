@@ -2,9 +2,11 @@ const express = require('express');
 const fs = require('fs')
 const pdf = require('html-pdf');
 const contratoTemplate = require('../documents/contrato');
+const instalacionTemplate = require('../documents/instalacion');
 const router = express.Router();
 
 const generateContrato = async (req, res) => {
+    console.log(req.body)
     pdf.create(contratoTemplate(req.body), { format: 'Legal' }).toFile('./documents/generated/contrato.pdf', (err) => {
         if (err) {
             return console.log('error');
@@ -26,7 +28,8 @@ const deleteContrato = async (req, res) => {
     });
 }
 const generateInstalacion = async (req, res) => {
-    pdf.create(contratoTemplate(req.body), { format: 'Letter' }).toFile('./documents/generated/instalacion.pdf', (err) => {
+    console.log('About to generatePDF', req.body)
+    pdf.create(instalacionTemplate(req.body), { format: 'A4' }).toFile('./documents/generated/instalacion.pdf', (err) => {
         if (err) {
             return console.log('error');
         }

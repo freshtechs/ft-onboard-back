@@ -17,6 +17,7 @@ module.exports = ({
     numeroDeVivienda,
     firmaURL
 }) => {
+    console.log(firmaURL)
     return `
 <!doctype html>
 <html>
@@ -1385,7 +1386,7 @@ module.exports = ({
                 </span>
             </div>
             <div style="margin-left: 174px;margin-top: 20px;width: 150px;height: 50px;">
-                <img src="${firmaURL}">
+                <img alt="" src='${firmaURL}' style="width: 150px; height: 50px;" >
             </div>
         </div>
         <div class="container">
