@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Client = require("../models/clients");
 const verifyJWT = require('../utils/verifyJWT');
+const singleCrearClientePotencial = require('../utils/crmLoad');
 
 // /api/clients routes
 
@@ -32,6 +33,23 @@ const handleCreateClient = async (req, res) => {
     }
 };
 
+const loadInCRM = async  (req,res) => {
+    try {
+        const client = await Client.findById(req.params.id);
+        console.log(client);
+        try {
+            const crmClientId = await singleCrearClientePotencial(client);
+            await Client.findByIdAndUpdate(req.params.id , { idCRM: crmClientId });
+            res.status(200).send({ success: true });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ error });
+        }
+    } catch( e) {
+        res.status(400).send({});
+    }
+}
+
 const handleUpdateClient = async (req, res) => {
     const id = req.params.id;
     await Client.findByIdAndUpdate(id, req.body);
@@ -49,5 +67,6 @@ router.get("", verifyJWT, handleGetClients);
 router.post("", handleCreateClient);
 router.get("/:id", handleGetUniqueClient);
 router.put("/:id", handleUpdateClient);
+router.post('/:id', loadInCRM)
 
 module.exports = router;
