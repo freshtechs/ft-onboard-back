@@ -3,10 +3,11 @@ const fs = require('fs')
 const pdf = require('html-pdf');
 const contratoTemplate = require('../documents/contrato');
 const instalacionTemplate = require('../documents/instalacion');
+const Client = require('../models/clients');
 const router = express.Router();
 
 const generateContrato = async (req, res) => {
-    console.log(req.body)
+    const updated = await Client.findByIdAndUpdate(req.body._id, req.body);
     pdf.create(contratoTemplate(req.body), { format: 'Legal' }).toFile('./documents/generated/contrato.pdf', (err) => {
         if (err) {
             return console.log('error');
@@ -29,7 +30,9 @@ const deleteContrato = async (req, res) => {
 }
 const generateInstalacion = async (req, res) => {
     console.log('About to generatePDF', req.body)
-    pdf.create(instalacionTemplate(req.body), { format: 'A4' }).toFile('./documents/generated/instalacion.pdf', (err) => {
+    const complemented = await Client.findById(req.body._id);
+    await Client.findByIdAndUpdate(req.body._id, req.body);
+    pdf.create(instalacionTemplate({ ...complemented, ...req.body }), { format: 'A4' }).toFile('./documents/generated/instalacion.pdf', (err) => {
         if (err) {
             return console.log('error');
         }

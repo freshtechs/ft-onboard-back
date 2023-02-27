@@ -11,7 +11,12 @@ module.exports = ({
     pdfValMarcaRouterCliente,
     pdfValMacRouterCliente,
     serviciosContratados,
-    nombre, apellido, cedula, telefono, correo, firmaURL
+    nombreDeVivienda, numeroDeVivienda,
+    latitud, longitud,
+    serialONU,
+    modeloONU,
+    macONU,
+    nombre, apellido, cedula, telefono, email, firmaURL
 }) => {
     return `<html>
 
@@ -771,7 +776,7 @@ module.exports = ({
             </tr>
             <tr class="c13">
                 <td class="c19" colspan="2" rowspan="1">
-                    <p class="c10"><span class="c14">Fecha de Instalaci&oacute;n: ${day}/${month}/${year}</span></p>
+                    <p class="c10"><span class="c14">Fecha de Instalaci&oacute;n: ${day ?? ''}/${month ?? ''}/${year ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -789,13 +794,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">Cliente:</span></p>
                 </td>
                 <td class="c39" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${nombre}</span></p>
+                    <p class="c0"><span class="c7">${nombre ?? ''}</span></p>
                 </td>
                 <td class="c31 c35" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">C&eacute;dula Identidad / Rif de la empresa</span></p>
                 </td>
                 <td class="c26" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">${cedula}</span></p>
+                    <p class="c0"><span class="c7">${cedula ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -803,13 +808,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">Telefonos:</span></p>
                 </td>
                 <td class="c30" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">${telefono}</span></p>
+                    <p class="c0"><span class="c7">${telefono ?? ''}</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">Correo Electronico:</span></p>
                 </td>
                 <td class="c19" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${correo}</span></p>
+                    <p class="c0"><span class="c7">${email ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c25">
@@ -817,7 +822,8 @@ module.exports = ({
                     <p class="c10"><span class="c7">Direcci&oacute;n (Av, calle, Edif, Apto, Piso):</span></p>
                 </td>
                 <td class="c21" colspan="4" rowspan="1">
-                    <p class="c0"><span class="c7">Av. Francisco Solano, Sans Souci, {direccion}, Chacao, Caracas.</span>
+<!--                    <p class="c0"><span class="c7">Av. Francisco Solano, Sans Souci, {direccion}, Chacao, Caracas.</span>-->
+                    <p class="c0"><span class="c7">${nombreDeVivienda ?? ''} ${numeroDeVivienda ?? ''} ${nombreDeVivienda || numeroDeVivienda ? ', Caracas' : ''}.</span>
                     </p>
                 </td>
             </tr>
@@ -826,12 +832,12 @@ module.exports = ({
                     <p class="c10"><span class="c7">Coordendas del sitio</span></p>
                 </td>
                 <td class="c38" colspan="3" rowspan="1">
-                    <p class="c5"><span class="c7"></span></p>
+                    <p class="c5"><span class="c7">${latitud ?? '-'}, ${longitud ?? '-'}</span></p>
                 </td>
             </tr>
             <tr class="c13">
                 <td class="c28" colspan="5" rowspan="1">
-                    <p class="c5"><span class="c7"></span></p>
+                    <p class="c5"><span class="c7">}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -844,13 +850,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">Serial ONU</span></p>
                 </td>
                 <td class="c30" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">{serial_onu}</span></p>
+                    <p class="c0"><span class="c7">${serialONU ?? ''}</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">NAP de Instalacion</span></p>
                 </td>
                 <td class="c19 c23" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValNap}</span></p>
+                    <p class="c0"><span class="c7">${pdfValNap ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -858,13 +864,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">MAC ONU</span></p>
                 </td>
                 <td class="c16" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">{mac_onu}</span></p>
+                    <p class="c0"><span class="c7">${macONU ?? ''}</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">Puerto de la NAP</span></p>
                 </td>
                 <td class="c19 c23" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValPuertoNap}</span></p>
+                    <p class="c0"><span class="c7">${pdfValPuertoNap ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -872,13 +878,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">Modelo ONU</span></p>
                 </td>
                 <td class="c16" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">{modelo_onu}</span></p>
+                    <p class="c0"><span class="c7">${modeloONU ?? ''}</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">Potencia ONU</span></p>
                 </td>
                 <td class="c19 c23" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValPotenciaONU}</span></p>
+                    <p class="c0"><span class="c7">${pdfValPotenciaONU ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -886,13 +892,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">Cable Drop</span></p>
                 </td>
                 <td class="c30" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValMetrosDrop} m</span></p>
+                    <p class="c0"><span class="c7">${pdfValMetrosDrop ?? ''} m</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">Modelo Router</span></p>
                 </td>
                 <td class="c19" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValMarcaRouterCliente}</span></p>
+                    <p class="c0"><span class="c7">${pdfValMarcaRouterCliente ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -900,13 +906,13 @@ module.exports = ({
                     <p class="c10"><span class="c7">Cable UTP</span></p>
                 </td>
                 <td class="c30" colspan="1" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValMetrosUTP} m</span></p>
+                    <p class="c0"><span class="c7">${pdfValMetrosUTP ?? ''} m</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">MAC Router</span></p>
                 </td>
                 <td class="c19" colspan="2" rowspan="1">
-                    <p class="c0"><span class="c7">${pdfValMacRouterCliente}</span></p>
+                    <p class="c0"><span class="c7">${pdfValMacRouterCliente ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c8">
@@ -917,7 +923,7 @@ module.exports = ({
                     <p class="c10"><span class="c7">Pachtcord (Mts):</span></p>
                 </td>
                 <td class="c22" colspan="1" rowspan="1">
-                    <p class="c10"><span class="c7">Conectores SC: ${pdfValConectoresSC}</span></p>
+                    <p class="c10"><span class="c7">Conectores SC: ${pdfValConectoresSC ?? ''}</span></p>
                 </td>
                 <td class="c31 c35" colspan="1" rowspan="1">
                     <p class="c10"><span class="c7">Canaletas:</span></p>
@@ -929,7 +935,7 @@ module.exports = ({
             <tr class="c13">
                 <td class="c28" colspan="5" rowspan="1">
                     <p class="c10"><span class="c14">SERVICIOS CONTRATADOS:</span><span class="c44">&nbsp;</span><span
-                            class="c14">${serviciosContratados}</span></p>
+                            class="c14">${serviciosContratados ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c13">
@@ -939,7 +945,7 @@ module.exports = ({
             </tr>
             <tr class="c40">
                 <td class="c17" colspan="5" rowspan="5">
-                    <p class="c0"><span class="c7">{notas_adicionales}</span></p>
+                    <p class="c0"><span class="c7"></span></p>
                 </td>
             </tr>
             <tr class="c12"></tr>
@@ -956,7 +962,7 @@ module.exports = ({
                     <p class="c10"><span class="c7">Nombre y Apellido:</span></p>
                 </td>
                 <td class="c20" colspan="4" rowspan="1">
-                    <p class="c0"><span class="c7">${nombre}</span></p>
+                    <p class="c0"><span class="c7">${nombre ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c4">
@@ -964,12 +970,12 @@ module.exports = ({
                     <p class="c10"><span class="c7">Correo Electr&oacute;nico:</span></p>
                 </td>
                 <td class="c20" colspan="4" rowspan="1">
-                    <p class="c0"><span class="c7">${correo}</span></p>
+                    <p class="c0"><span class="c7">${email ?? ''}</span></p>
                 </td>
             </tr>
             <tr class="c8">
                 <td class="c27" colspan="2" rowspan="1">
-                    <p class="c10"><span class="c7">Cantidad de dispositivos configurados: {cantidad_tv}</span></p>
+                    <p class="c10"><span class="c7">Cantidad de dispositivos configurados: </span></p>
                 </td>
                 <td class="c38" colspan="3" rowspan="1">
                     <p class="c10"><span class="c7">MAC FIRE TV:</span></p>
@@ -983,7 +989,7 @@ module.exports = ({
                     <p class="c5"><span class="c7"></span></p>
                 </td>
                 <td class="c46" colspan="2" rowspan="2">
-                    <p class="c0"><img src=${firmaURL}></p>
+                    <p class="c0"><img src=${firmaURL ?? ''}></p>
                 </td>
             </tr>
             <tr class="c12"></tr>
