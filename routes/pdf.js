@@ -28,10 +28,9 @@ const deleteContrato = async (req, res) => {
         deleteFile(filename);
     });
 }
-const generateInstalacion = async (req, res) => {
-    console.log('About to generatePDF', req.body)
+const generateInstalacionAndUpdateClient = async (req, res) => {
+    await Client.findByIdAndUpdate(req.body._id, req.body)
     const complemented = await Client.findById(req.body._id);
-    await Client.findByIdAndUpdate(req.body._id, req.body);
     pdf.create(instalacionTemplate({ ...complemented, ...req.body }), { format: 'A4' }).toFile('./documents/generated/instalacion.pdf', (err) => {
         if (err) {
             return console.log('error');
@@ -112,7 +111,7 @@ router.post("/contrato", generateContrato);
 router.get("/contrato", fetchContrato)
 router.get('/contrato/delete', deleteContrato);
 
-router.post("/instalacion", generateInstalacion);
+router.post("/instalacion", generateInstalacionAndUpdateClient);
 router.get("/instalacion", fetchInstalacion)
 router.get('/instalacion/delete', deleteInstalacion);
 

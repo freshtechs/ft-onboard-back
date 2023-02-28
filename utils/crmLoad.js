@@ -1,17 +1,18 @@
-// #1 cargar client
-// e como potencial en CRM
+// #1 cargar cliente como potencial en CRM
+
 const CRM_API_KEY = "+ujWcF2QOV/RY9L8G0L/9Cupwwi3OsVt6pBRi/pCWC6LkPdT1YaIPV9FRmZBgUVS"
 const CRM_URL = "https://ccs.freshtechs.com.ve"
 const fetch = require('node-fetch');
+
 const singleCrearClientePotencial = async (user) => {
   const { nombre, apellido, email, telefono, latitud, longitud,
     nombreDeVivienda, numeroDeVivienda,
     tipoDeVivienda, tipoDeServicio, serviciosContratados, estaActivado, vendedor
   } = user;
-  const [latitudFormat, longitudFormat ] = [Number(latitud), Number(longitud)];
+  const [latitudFormat, longitudFormat] = [Number(latitud), Number(longitud)];
   let fullAddress = `${nombreDeVivienda}, ${numeroDeVivienda}`;
   let body = {
-    "isLead": true,
+    "isLead": false,
     "clientType": 1,
     "firstName": nombre,
     "lastName": apellido,
@@ -36,9 +37,9 @@ const singleCrearClientePotencial = async (user) => {
       "customAttributeId": 5,
       "value": "1"
     },
-      {
-        "customAttributeId": 6, "value": ''
-      }
+    {
+      "customAttributeId": 6, "value": ''
+    }
     ],
     "addressData": {
       "type": "GoogleMaps",
@@ -52,7 +53,7 @@ const singleCrearClientePotencial = async (user) => {
   let headers = {
     "Accept": "application/json",
     "X-Auth-App-Key": CRM_API_KEY,
-    "Content-Type":"application/json"
+    "Content-Type": "application/json"
   }
   let options = {
     "headers": headers,
@@ -62,7 +63,7 @@ const singleCrearClientePotencial = async (user) => {
   let responseText = await fetch(CRM_URL + "/crm/api/v1.0/clients", options);
   let responseJson = await responseText.json();
   console.log(responseJson);
-  if(responseJson.id ) {
+  if (responseJson.id) {
     return responseJson.id
   } else {
     return null;

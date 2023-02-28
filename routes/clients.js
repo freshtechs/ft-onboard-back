@@ -3,6 +3,9 @@ const router = express.Router();
 const Client = require("../models/clients");
 const verifyJWT = require('../utils/verifyJWT');
 const singleCrearClientePotencial = require('../utils/crmLoad');
+const crearServicio = require('../utils/crearServicio');
+const crearFactura = require('../utils/crearFactura');
+const actualizarServicio = require('../utils/actualizarServicio');
 
 // /api/clients routes
 
@@ -33,19 +36,29 @@ const handleCreateClient = async (req, res) => {
     }
 };
 
-const loadInCRM = async  (req,res) => {
+const loadInCRM = async (req, res) => {
     try {
         const client = await Client.findById(req.params.id);
         console.log(client);
         try {
             const crmClientId = await singleCrearClientePotencial(client);
-            await Client.findByIdAndUpdate(req.params.id , { idCRM: crmClientId });
-            res.status(200).send({ success: true });
+            const serviceIdCRM = await crearServicio(client)
+            const facturaIdCRM = await crearFactura(client)
+            const estaActivado = await actualizarServicio(client)
+            await Client.findByIdAndUpdate(req.params.id, {
+                idCRM: crmClientId, serviceIdCRM: serviceIdCRM,
+                facturaIdCRM: facturaIdCRM, estaActivado: estaActivado
+            });
+            if (estaActivado) {
+                res.status(200).send({ success: true })
+            } else {
+                throw Error(`Couldnt activate client: ${client}`)
+            }
         } catch (error) {
             console.log(error);
             res.status(500).send({ error });
         }
-    } catch( e) {
+    } catch (e) {
         res.status(400).send({});
     }
 }
