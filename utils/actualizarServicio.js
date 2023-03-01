@@ -4,21 +4,20 @@ const fetch = require('node-fetch');
 
 // #5 Actualizar Servicio
 const actualizarServicio = async (client) => {
-    const { idCRM, serviceIdCRM } = client;
+    const { serviceIdCRM } = client;
 
     let body = {
         "sendEmailsAutomatically": true,
     }
     let headers = {
         "Accept": "application/json",
-        "X-Auth-App-Key": CRM_API_KEY
+        "X-Auth-App-Key": CRM_API_KEY,
+        "Content-Type": "application/json",
     }
     let options = {
         "headers": headers,
-        "contentType": "application/json",
         "method": "patch",
-        "payload": JSON.stringify(body),
-        "validateHttpsCertificates": false
+        "body": JSON.stringify(body)
     }
 
     let url = CRM_URL + "/crm/api/v1.0/clients/" + "services/" + serviceIdCRM

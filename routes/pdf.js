@@ -3,6 +3,8 @@ const fs = require('fs')
 const pdf = require('html-pdf');
 const contratoTemplate = require('../documents/contrato');
 const instalacionTemplate = require('../documents/instalacion');
+const bienvenidaTemplate = require('../documents/bienvenida');
+const reciboDePagoTemplate = require('../documents/reciboDePago');
 const Client = require('../models/clients');
 const router = express.Router();
 
@@ -51,8 +53,10 @@ const deleteInstalacion = async (req, res) => {
         deleteFile(filename);
     });
 }
+
 const generateBienvenida = async (req, res) => {
-    pdf.create(contratoTemplate(req.body), { format: 'Letter' }).toFile('./documents/generated/bienvenida.pdf', (err) => {
+    const complemented = await Client.findById(req.body._id);
+    pdf.create(bienvenidaTemplate({ ...complemented, ...req.body }), { format: 'Letter' }).toFile('./documents/generated/bienvenida.pdf', (err) => {
         if (err) {
             return console.log('error');
         }
@@ -72,8 +76,11 @@ const deleteBienvenida = async (req, res) => {
         deleteFile(filename);
     });
 }
-const generateReciboDePago = async (req, res) => {
-    pdf.create(contratoTemplate(req.body), { format: 'Letter' }).toFile('./documents/generated/recibo_de_pago.pdf', (err) => {
+
+const generateReciboDePagoAndUpdateClient = async (req, res) => {
+    await Client.findByIdAndUpdate(req.body._id, req.body)
+    const complemented = await Client.findById(req.body._id);
+    pdf.create(reciboDePagoTemplate({ ...complemented, ...req.body }), { format: 'Letter' }).toFile('./documents/generated/recibo_de_pago.pdf', (err) => {
         if (err) {
             return console.log('error');
         }
@@ -119,7 +126,7 @@ router.post("/bienvenida", generateBienvenida);
 router.get("/bienvenida", fetchBienvenida)
 router.get('/bienvenida/delete', deleteBienvenida);
 
-router.post("/recibo_de_pago", generateReciboDePago);
+router.post("/recibo_de_pago", generateReciboDePagoAndUpdateClient);
 router.get("/recibo_de_pago", fetchReciboDePago)
 router.get('/recibo_de_pago/delete', deleteReciboDePago);
 

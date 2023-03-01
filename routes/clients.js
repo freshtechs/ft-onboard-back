@@ -6,6 +6,7 @@ const singleCrearClientePotencial = require('../utils/crmLoad');
 const crearServicio = require('../utils/crearServicio');
 const crearFactura = require('../utils/crearFactura');
 const actualizarServicio = require('../utils/actualizarServicio');
+const activarEnTV = require('../utils/activarEnTV');
 
 // /api/clients routes
 
@@ -39,17 +40,30 @@ const handleCreateClient = async (req, res) => {
 const loadInCRM = async (req, res) => {
     try {
         const client = await Client.findById(req.params.id);
-        console.log(client);
         try {
-            const crmClientId = await singleCrearClientePotencial(client);
-            const serviceIdCRM = await crearServicio(client)
-            const facturaIdCRM = await crearFactura(client)
-            const estaActivado = await actualizarServicio(client)
+            if (!client.idCRM) {
+                const crmClientId = await singleCrearClientePotencial(client)
+                client.idCRM = crmClientId
+            }
+            if (!client.serviceIdCRM) {
+                const serviceIdCRM = await crearServicio(client)
+                client.serviceIdCRM = serviceIdCRM
+            }
+            if (!client.facturaIdCRM) {
+                const facturaIdCRM = await crearFactura(client)
+                client.facturaIdCRM = facturaIdCRM
+            }
+
+            const activoEnCRM = await actualizarServicio(client)
+            const activoEnTV = await activarEnTV(client)
+
+            const activo = (activoEnCRM && activoEnTV)
+
             await Client.findByIdAndUpdate(req.params.id, {
-                idCRM: crmClientId, serviceIdCRM: serviceIdCRM,
-                facturaIdCRM: facturaIdCRM, estaActivado: estaActivado
+                idCRM: client.idCRM, serviceIdCRM: client.serviceIdCRM,
+                facturaIdCRM: client.facturaIdCRM, estaActivado: activo, activoEnTV: activoEnTV, activoEnCRM: activoEnCRM
             });
-            if (estaActivado) {
+            if (activo) {
                 res.status(200).send({ success: true })
             } else {
                 throw Error(`Couldnt activate client: ${client}`)

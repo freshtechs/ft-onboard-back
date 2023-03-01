@@ -5,6 +5,8 @@ const fetch = require('node-fetch');
 // #4 Generar primera factura
 const crearFactura = async (client) => {
     const { idCRM, montoInstalacion, serviceIdCRM } = client;
+    let responseText;
+    let responseJson;
 
     let body = {
         "items": [
@@ -22,34 +24,40 @@ const crearFactura = async (client) => {
 
     let headers = {
         "Accept": "application/json",
-        "X-Auth-App-Key": CRM_API_KEY
+        "X-Auth-App-Key": CRM_API_KEY,
+        "Content-Type": "application/json",
     }
     let options = {
         "headers": headers,
-        "contentType": "application/json",
         "method": "post",
-        "payload": JSON.stringify(body),
-        "validateHttpsCertificates": false
+        "body": JSON.stringify(body)
     }
     let url = CRM_URL + "/crm/api/v1.0/clients/" + idCRM + "/invoices"
-    let responseText = await fetch(url, options);
-    let responseJson = await responseText.json();
+    console.log(url, options)
+    try {
+        responseText = await fetch(url, options);
+        responseJson = await responseText.json();
+    } catch (err) {
+        console.log(err.message)
+    }
+
     if (responseJson.id) {
+        approveAndSendFactura(headers, responseJson.id)
         return responseJson.id
     } else {
         return null;
     }
 
-    let secondOptions = {
-        "headers": headers,
-        "contentType": "application/json",
-        "method": "patch",
-        "validateHttpsCertificates": false
+    // envia automaticamente la factura a cliente
+    async function approveAndSendFactura(headers, facturaId) {
+        let secondOptions = {
+            "headers": headers,
+            "method": "patch",
+        }
+        let secondURL = CRM_URL + "/crm/api/v1.0/invoices/" + facturaId + "/send"
+        await fetch(secondURL, secondOptions);
+
     }
-    // 'Descomentar lo de abajo para que se envie y apruebe la factura automaticamente'
-    // let secondURL = CRM_URL + "/crm/api/v1.0/invoices/" + facturaId + "/send"
-    // UrlFetchApp.fetch(secondURL, secondOptions)
-    // return (facturaId)
 }
 
 module.exports = crearFactura

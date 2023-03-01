@@ -30,7 +30,7 @@ const clientSchema = mongoose.Schema({
     medicionURL: { type: String, required: false },
     rutaURL: { type: String, required: false },
     posicionURL: { type: String, required: false },
-    fechaDeInstalacion: { type: Date, required: false },
+    fechaDeInstalacion: { type: String, required: false },
     notas: { type: String, required: false },
     totalRecaudado: { type: Number, required: false },
     fechaDePago: { type: Date, required: false },
@@ -43,10 +43,12 @@ const clientSchema = mongoose.Schema({
     bienvenidaURL: { type: String, required: false },
     reciboURL: { type: String, required: false },
     idCRM: { type: Number, required: false },
-    serviceIdCRM: { type: String, required: false },
-    facturaIdCRM: { type: String, required: false },
+    serviceIdCRM: { type: Number, required: false },
+    facturaIdCRM: { type: Number, required: false },
     enviadoCorreoCliente: { type: Boolean, required: false },
     enviadoCorreoInterno: { type: Boolean, required: false },
+    activoEnTV: { type: Boolean, required: false, default: false },
+    activoEnCRM: { type: Boolean, required: false, default: false },
     estaActivado: { type: Boolean, required: false, default: false },
     vendedor: { type: String, required: true }
 }, { timestamps: true })
