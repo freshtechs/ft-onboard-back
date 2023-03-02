@@ -6,8 +6,7 @@ const fetch = require('node-fetch');
 
 const singleCrearClientePotencial = async (user) => {
   const { nombre, apellido, email, telefono, latitud, longitud,
-    nombreDeVivienda, numeroDeVivienda,
-    tipoDeVivienda, tipoDeServicio, serviciosContratados, estaActivado, vendedor
+    nombreDeVivienda, numeroDeVivienda, cedula
   } = user;
   const [latitudFormat, longitudFormat] = [Number(latitud), Number(longitud)];
   let fullAddress = `${nombreDeVivienda}, ${numeroDeVivienda}`;
@@ -38,7 +37,7 @@ const singleCrearClientePotencial = async (user) => {
       "value": "1"
     },
     {
-      "customAttributeId": 6, "value": ''
+      "customAttributeId": 6, "value": cedula
     }
     ],
     "addressData": {
