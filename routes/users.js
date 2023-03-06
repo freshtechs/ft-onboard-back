@@ -44,7 +44,21 @@ router.post("/register", async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: 86400 },
             (err, token) => {
-                return res.status(200).json({ message: "Success", token: "Bearer " + token })
+                return res.status(200).json({
+                    message: "Success",
+                    token: "Bearer " + token,
+                    user: {
+                        "email": dbUser.email,
+                        "nombre": dbUser.nombre,
+                        "apellido": dbUser.apellido,
+                        "telefono": dbUser.telefono,
+                        "esAdmin": dbUser.esAdmin,
+                        "esCoordinador": dbUser.esCoordinador,
+                        "esExterno": dbUser.esExterno,
+                        "compania": dbUser.compania,
+                        "displayName": `${dbUser.nombre} ${dbUser.apellido}`
+                    }
+                })
             }
         )
     } catch (error) {
