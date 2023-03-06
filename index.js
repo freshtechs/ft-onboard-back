@@ -10,8 +10,8 @@ const clientRoutes = require('./routes/clients');
 const app = express()
 
 const httpsServer = https.createServer({
-    key: fs.readFileSync('/home/unms/data/cert/live/ccs.freshtechs.com.ve/fullchain.pem'),
-    cert: fs.readFileSync('/home/unms/data/cert/live/ccs.freshtechs.com.ve/privkey.pem'),
+    key: fs.readFileSync('./privatekey.pem'),
+    cert: fs.readFileSync('./certificate.pem'),
 }, app);
 
 
