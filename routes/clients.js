@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const fse = require('fs-extra')
 const router = express.Router();
 const Client = require("../models/clients");
 const verifyJWT = require('../utils/verifyJWT');
@@ -137,32 +138,21 @@ const handleGetUniqueClient = async (req, res) => {
 }
 
 const deletePDFSent = async (req, res) => {
-    const client = await Client.findById(req.params.id);
-    const myList = []
     try {
-        myList.push(client.contratoExpressPath, client.reporteExpressPath, client.reporteCrmPath, client.reciboPagoExpressPath, client.reciboPagoCrmPath)
-        myList.forEach((fileName) => {
-            var stream = fs.createReadStream(fileName);
-            stream.pipe(res).once("close", function () {
-                stream.destroy(); // makesure stream closed, not close if download aborted.
-                deleteFile(fileName);
-            });
-        })
-        return res.status(200).json('Success');
-    } catch (e) {
-        return res.status(500).json(e)
+        await fse.emptyDir('./documents/generated')
+        return res.status(200).json('Sucesss');
+    } catch (err) {
+        return res.status(500).json('Sucesss');
     }
-
-
-
 }
 
 
 router.get("", verifyJWT, handleGetClients);
 router.post("", handleCreateClient);
+router.delete("", deletePDFSent);
 router.get("/:id", handleGetUniqueClient);
 router.put("/:id", handleUpdateClient);
 router.post('/:id', loadInCRM);
-router.delete('/:id', deletePDFSent);
+
 
 module.exports = router;
