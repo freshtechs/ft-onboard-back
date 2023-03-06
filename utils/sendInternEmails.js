@@ -3,7 +3,7 @@ const soporteEmailTemplate = require('../documents/soporteEmailTemplate');
 const adminEmailTemplate = require('../documents/adminEmailTemplate');
 
 const sendInternEmails = async (client, reporteExpressPath, reporteCrmPath, reciboPagoExpressPath, reciboPagoCrmPath) => {
-    const sendSoporteEmail = () => {
+    const sendSoporteEmail = async () => {
         const html = soporteEmailTemplate(client, reporteCrmPath)
         let transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
@@ -26,15 +26,10 @@ const sendInternEmails = async (client, reporteExpressPath, reporteCrmPath, reci
                 },
             ]
         };
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+        let info = await transporter.sendMail(mailOptions)
+        console.log(`Soporte email sent: ${info}`)
     }
-    const sendAdminEmail = () => {
+    const sendAdminEmail = async () => {
         const html = adminEmailTemplate(client, reciboPagoCrmPath)
         let transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
@@ -57,17 +52,12 @@ const sendInternEmails = async (client, reporteExpressPath, reporteCrmPath, reci
                 },
             ]
         };
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+        let info = await transporter.sendMail(mailOptions)
+        console.log(`Admin email sent: ${info}`)
     }
 
-    sendSoporteEmail()
-    sendAdminEmail()
+    await sendSoporteEmail()
+    await sendAdminEmail()
 
 }
 
