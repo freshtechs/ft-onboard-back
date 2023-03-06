@@ -108,15 +108,13 @@ const loadInCRM = async (req, res) => {
                 reporteExpressPath,
                 reciboPagoExpressPath,
             });
-            return res.status(200).send({ success: true })
         } else {
-            throw Error(`Couldnt activate client: ${client}`)
+            throw Error(`message: 'Couldnt activate client: ${client}'`)
         }
     } catch (error) {
-        console.log(error.toString());
         return res.status(500).send({ error });
     }
-
+    return res.status(200).send({ success: true })
 }
 
 const handleUpdateClient = async (req, res) => {
