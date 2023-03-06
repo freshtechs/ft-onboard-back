@@ -1,11 +1,18 @@
 require("dotenv").config()
 const bodyParser = require("body-parser")
 const express = require("express")
+const https = require('https')
+const fs = require('fs')
 const mongoose = require("mongoose")
 const userRoutes = require('./routes/users');
 const clientRoutes = require('./routes/clients');
 
 const app = express()
+
+const httpsServer = https.createServer({
+    key: fs.readFileSync('/home/unms/data/cert/live/ccs.freshtechs.com.ve/fullchain.pem'),
+    cert: fs.readFileSync('/home/unms/data/cert/live/ccs.freshtechs.com.ve/privkey.pem'),
+}, app);
 
 
 // use bodyparser middleware to receive form data
@@ -55,7 +62,12 @@ const dbURI = process.env.MONGODB_URI
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((res) => {
         // only listen for requests once database data has loaded
-        app.listen(process.env.PORT || 5000, () => console.log("Server is up on port " + (process.env.PORT || 5000)))
+        // app.listen(process.env.PORT || 5000, () => console.log("Server is up on port " + (process.env.PORT || 5000)))
+
+        httpsServer.listen(process.env.PORT || 5000, () => {
+            console.log("Server is up on port " + (process.env.PORT || 5000));
+        });
+
     })
     .catch(err => console.log(err))
 
