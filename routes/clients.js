@@ -92,12 +92,12 @@ const loadInCRM = async (req, res) => {
         )
 
         if (activo) {
-            sendClientEmail(
+            await sendClientEmail(
                 client, contratoExpressPath, contratoCrmPath,
                 reporteExpressPath, reporteCrmPath,
                 bienvenidaExpressPath, bienvenidaCrmPath
             )
-            sendInternEmails(
+            await sendInternEmails(
                 client, reporteExpressPath, reporteCrmPath,
                 reciboPagoExpressPath, reciboPagoCrmPath
             )
@@ -108,13 +108,14 @@ const loadInCRM = async (req, res) => {
                 reporteExpressPath,
                 reciboPagoExpressPath,
             });
+            return res.status(200).send({ success: true })
         } else {
             throw Error(`message: 'Couldnt activate client: ${client}'`)
         }
     } catch (error) {
         return res.status(500).send({ error });
     }
-    return res.status(200).send({ success: true })
+
 }
 
 const handleUpdateClient = async (req, res) => {

@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const soporteEmailTemplate = require('../documents/soporteEmailTemplate');
 const adminEmailTemplate = require('../documents/adminEmailTemplate');
 
-const sendInternEmails = (client, reporteExpressPath, reporteCrmPath, reciboPagoExpressPath, reciboPagoCrmPath) => {
+const sendInternEmails = async (client, reporteExpressPath, reporteCrmPath, reciboPagoExpressPath, reciboPagoCrmPath) => {
     const sendSoporteEmail = () => {
         const html = soporteEmailTemplate(client, reporteCrmPath)
         let transporter = nodemailer.createTransport({

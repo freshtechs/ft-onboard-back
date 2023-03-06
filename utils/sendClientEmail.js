@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const clientEmail = require('../documents/clientEmail');
 
-const sendClientEmail = (
+const sendClientEmail = async (
     client, contratoExpressPath, contratoCrmPath,
     reporteExpressPath, reporteCrmPath,
     bienvenidaExpressPath, bienvenidaCrmPath
