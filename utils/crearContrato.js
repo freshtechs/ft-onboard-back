@@ -1,5 +1,3 @@
-const CRM_API_KEY = "+ujWcF2QOV/RY9L8G0L/9Cupwwi3OsVt6pBRi/pCWC6LkPdT1YaIPV9FRmZBgUVS"
-const CRM_URL = "http://ccs.freshtechs.com.ve/crm/api/v1.0"
 const fetch = require('node-fetch');
 const downloadFile = require('./downloadFile')
 
@@ -17,7 +15,7 @@ const crearContrato = async (client) => {
     }
     let headers = {
         "Accept": "application/json",
-        "X-Auth-App-Key": CRM_API_KEY,
+        "X-Auth-App-Key": process.env.CRM_API_KEY,
         "Content-Type": "application/json",
     }
     let options = {
@@ -26,17 +24,18 @@ const crearContrato = async (client) => {
         "body": JSON.stringify(body)
     }
 
-    let url = CRM_URL + "/documents"
+
+    let url = process.env.CRM_URL + "/documents"
     let responseText = await fetch(url, options);
     let responseJson = await responseText.json();
     if (responseJson.id) {
         const documentId = responseJson.id
         const documentName = responseJson.name
         crmPath = `https://ccs.freshtechs.com.ve:1443${responseJson.path}`
-        let secondUrl = `${CRM_URL}/documents/${documentId}/file`
+        let secondUrl = `${process.env.CRM_URL}/documents/${documentId}/file`
         let secondOptions = {
             "headers": {
-                "X-Auth-App-Key": CRM_API_KEY,
+                "X-Auth-App-Key": process.env.CRM_API_KEY,
                 "Content-Type": "application/json",
             },
             "method": "get"

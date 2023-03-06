@@ -1,7 +1,4 @@
 // # 3 Crear un servicio y asociarlo al cliente existente
-
-const CRM_API_KEY = "+ujWcF2QOV/RY9L8G0L/9Cupwwi3OsVt6pBRi/pCWC6LkPdT1YaIPV9FRmZBgUVS"
-const CRM_URL = "http://ccs.freshtechs.com.ve"
 const fetch = require('node-fetch');
 const servicePlan60MbpsId = 1213
 const servicePlan100MbpsId = 1219
@@ -25,7 +22,7 @@ const crearServicio = async (client) => {
     }
     let headers = {
         "Accept": "application/json",
-        "X-Auth-App-Key": CRM_API_KEY,
+        "X-Auth-App-Key": process.env.CRM_API_KEY,
         "Content-Type": "application/json"
     }
     let options = {
@@ -33,7 +30,8 @@ const crearServicio = async (client) => {
         "method": "post",
         "body": JSON.stringify(body)
     }
-    let url = CRM_URL + "/crm/api/v1.0/clients/" + idCRM + "/services"
+
+    let url = process.env.CRM_URL + "/clients/" + idCRM + "/services"
     try {
         responseText = await fetch(url, options);
         responseJson = await responseText.json();

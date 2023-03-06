@@ -1,5 +1,3 @@
-const CRM_API_KEY = "+ujWcF2QOV/RY9L8G0L/9Cupwwi3OsVt6pBRi/pCWC6LkPdT1YaIPV9FRmZBgUVS"
-const CRM_URL = "http://ccs.freshtechs.com.ve"
 const fetch = require('node-fetch');
 
 // #4 Generar primera factura
@@ -24,7 +22,7 @@ const crearFactura = async (client) => {
 
     let headers = {
         "Accept": "application/json",
-        "X-Auth-App-Key": CRM_API_KEY,
+        "X-Auth-App-Key": process.env.CRM_API_KEY,
         "Content-Type": "application/json",
     }
     let options = {
@@ -32,7 +30,7 @@ const crearFactura = async (client) => {
         "method": "post",
         "body": JSON.stringify(body)
     }
-    let url = CRM_URL + "/crm/api/v1.0/clients/" + idCRM + "/invoices"
+    let url = process.env.CRM_URL + "/clients/" + idCRM + "/invoices"
     console.log(url, options)
     try {
         responseText = await fetch(url, options);
@@ -54,7 +52,7 @@ const crearFactura = async (client) => {
             "headers": headers,
             "method": "patch",
         }
-        let secondURL = CRM_URL + "/crm/api/v1.0/invoices/" + facturaId + "/send"
+        let secondURL = process.env.CRM_URL + "/invoices/" + facturaId + "/send"
         await fetch(secondURL, secondOptions);
 
     }
