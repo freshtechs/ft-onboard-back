@@ -12,7 +12,16 @@ const crearBienvenida = require('../utils/crearBienvenida');
 const sendClientEmail = require('../utils/sendClientEmail');
 const sendInternEmails = require('../utils/sendInternEmails');
 const actualizarServicio = require('../utils/actualizarServicio');
-const activarEnTV = require('../utils/activarEnTv');
+const activarEnTV = require('../utils/activarEnTV');
+const deleteFile = require('../utils/deleteFile');
+
+const deleteAllFiles = (firstPath, secondPath, thirdPath, fourthPath) => {
+    deleteFile(firstPath);
+    deleteFile(secondPath);
+    deleteFile(thirdPath);
+    deleteFile(fourthPath);
+}
+
 
 // /api/clients routes
 
@@ -99,6 +108,7 @@ const loadInCRM = async (req, res) => {
                 reciboPagoExpressPath, reciboPagoCrmPath
             )
             await Client.findByIdAndUpdate(req.params.id, { estaActivado: activo });
+            deleteAllFiles(contratoExpressPath, reporteExpressPath, bienvenidaExpressPath, reciboPagoExpressPath)
         } else {
             throw Error(`Couldnt activate client: ${client}`)
         }

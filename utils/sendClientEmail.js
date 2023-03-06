@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer');
 const clientEmail = require('../documents/clientEmail');
-const deleteFile = require('./deleteFile');
 
 const sendClientEmail = (
     client, contratoExpressPath, contratoCrmPath,
@@ -42,9 +41,6 @@ const sendClientEmail = (
         if (error) {
             console.log(error);
         } else {
-            deleteFile(contratoExpressPath)
-            deleteFile(reporteExpressPath)
-            deleteFile(bienvenidaExpressPath)
             console.log('Email sent: ' + info.response);
         }
     });

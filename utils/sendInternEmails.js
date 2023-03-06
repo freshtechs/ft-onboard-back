@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const soporteEmailTemplate = require('../documents/soporteEmailTemplate');
 const adminEmailTemplate = require('../documents/adminEmailTemplate');
-const deleteFile = require('./deleteFile');
 
 const sendInternEmails = (client, reporteExpressPath, reporteCrmPath, reciboPagoExpressPath, reciboPagoCrmPath) => {
     const sendSoporteEmail = () => {
@@ -62,7 +61,6 @@ const sendInternEmails = (client, reporteExpressPath, reporteCrmPath, reciboPago
             if (error) {
                 console.log(error);
             } else {
-                deleteFile(reciboPagoExpressPath)
                 console.log('Email sent: ' + info.response);
             }
         });
