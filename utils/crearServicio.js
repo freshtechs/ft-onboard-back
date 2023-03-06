@@ -1,7 +1,7 @@
 // # 3 Crear un servicio y asociarlo al cliente existente
 
 const CRM_API_KEY = "+ujWcF2QOV/RY9L8G0L/9Cupwwi3OsVt6pBRi/pCWC6LkPdT1YaIPV9FRmZBgUVS"
-const CRM_URL = "https://ccs.freshtechs.com.ve"
+const CRM_URL = "http://ccs.freshtechs.com.ve"
 const fetch = require('node-fetch');
 const servicePlan60MbpsId = 1213
 const servicePlan100MbpsId = 1219

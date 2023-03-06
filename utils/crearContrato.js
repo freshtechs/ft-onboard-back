@@ -1,5 +1,5 @@
 const CRM_API_KEY = "+ujWcF2QOV/RY9L8G0L/9Cupwwi3OsVt6pBRi/pCWC6LkPdT1YaIPV9FRmZBgUVS"
-const CRM_URL = "https://ccs.freshtechs.com.ve/crm/api/v1.0"
+const CRM_URL = "http://ccs.freshtechs.com.ve/crm/api/v1.0"
 const fetch = require('node-fetch');
 const downloadFile = require('./downloadFile')
 
