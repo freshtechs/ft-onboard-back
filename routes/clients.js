@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const router = express.Router();
 const Client = require("../models/clients");
 const verifyJWT = require('../utils/verifyJWT');
