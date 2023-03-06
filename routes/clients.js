@@ -90,7 +90,6 @@ const loadInCRM = async (req, res) => {
         )
 
         if (activo) {
-            res.status(200).send({ success: true })
             sendClientEmail(
                 client, contratoExpressPath, contratoCrmPath,
                 reporteExpressPath, reporteCrmPath,
@@ -100,11 +99,14 @@ const loadInCRM = async (req, res) => {
                 client, reporteExpressPath, reporteCrmPath,
                 reciboPagoExpressPath, reciboPagoCrmPath
             )
-            await Client.findByIdAndUpdate(req.params.id, { estaActivado: activo });
-            deleteFile(contratoExpressPath)
-            deleteFile(reporteExpressPath)
-            deleteFile(bienvenidaExpressPath)
-            deleteFile(reciboPagoExpressPath)
+            await Client.findByIdAndUpdate(req.params.id, {
+                estaActivado: activo,
+                contratoExpressPath,
+                bienvenidaExpressPath,
+                reporteExpressPath,
+                reciboPagoExpressPath,
+            });
+            res.status(200).send({ success: true })
         } else {
             throw Error(`Couldnt activate client: ${client}`)
         }
@@ -133,10 +135,33 @@ const handleGetUniqueClient = async (req, res) => {
     return res.status(200).json(client);
 }
 
+const deletePDFSent = async (req, res) => {
+    const client = await Client.findById(req.params.id);
+    const myList = []
+    try {
+        myList.push(client.contratoExpressPath, client.reporteExpressPath, client.reporteCrmPath, client.reciboPagoExpressPath, client.reciboPagoCrmPath)
+        myList.forEach((fileName) => {
+            var stream = fs.createReadStream(fileName);
+            stream.pipe(res).once("close", function () {
+                stream.destroy(); // makesure stream closed, not close if download aborted.
+                deleteFile(fileName);
+            });
+        })
+        return res.status(200).json('Success');
+    } catch (e) {
+        return res.status(500).json(e)
+    }
+
+
+
+}
+
+
 router.get("", verifyJWT, handleGetClients);
 router.post("", handleCreateClient);
 router.get("/:id", handleGetUniqueClient);
 router.put("/:id", handleUpdateClient);
-router.post('/:id', loadInCRM)
+router.post('/:id', loadInCRM);
+router.delete('/:id', deletePDFSent);
 
 module.exports = router;

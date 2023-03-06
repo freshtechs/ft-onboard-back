@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const deleteFile = (file) => {
+function deleteFile(file) {
     fs.unlink(file, function (err) {
         if (err) {
             console.error(err.toString());

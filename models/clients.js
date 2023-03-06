@@ -52,6 +52,10 @@ const clientSchema = mongoose.Schema({
     activoEnTV: { type: Boolean, required: false, default: false },
     activoEnCRM: { type: Boolean, required: false, default: false },
     estaActivado: { type: Boolean, required: false, default: false },
+    contratoExpressPath: { type: String, required: false, default: false },
+    bienvenidaExpressPath: { type: String, required: false, default: false },
+    reporteExpressPath: { type: String, required: false, default: false },
+    reciboPagoExpressPath: { type: String, required: false, default: false },
     vendedor: { type: String, required: true }
 }, { timestamps: true })
 
