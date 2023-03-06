@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     esAdmin: { type: Boolean, required: false, default: false },
     esCoordinador: { type: Boolean, required: false, default: false },
     esExterno: { type: Boolean, required: false, default: false },
-    compania: { type: String, required: false, default: "Fresh Techs" },
+    compania: { type: String, required: false, default: "" },
 }, { timestamps: true })
 
 const User = mongoose.model("User", userSchema)

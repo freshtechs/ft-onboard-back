@@ -15,9 +15,9 @@ const sendInternEmails = async (client, reporteExpressPath, reporteCrmPath, reci
         });
         let mailOptions = {
             from: 'ventasccs@freshtechs.com.ve',
-            // cc: 'franten94@gmail.com',
-            // to: 'soporte@freshtechs.com.ve',
-            to: 'franten94@gmail.com',
+            cc: 'franten94@gmail.com',
+            to: 'soporte@freshtechs.com.ve',
+            // to: 'franten94@gmail.com',
             subject: `🤖⚡¡Nuevo contrato de cliente: ${client.nombre} ${client.apellido} Plan: ${client.serviciosContratados}!`,
             html: html,
             attachments: [
@@ -41,9 +41,9 @@ const sendInternEmails = async (client, reporteExpressPath, reporteCrmPath, reci
         });
         let mailOptions = {
             from: 'ventasccs@freshtechs.com.ve',
-            // cc: 'franten94@gmail.com',
-            // to: 'adminccs@freshtechs.com.ve',
-            to: 'franten94@gmail.com',
+            cc: 'franten94@gmail.com',
+            to: 'adminccs@freshtechs.com.ve',
+            // to: 'franten94@gmail.com',
             subject: `🤖⚡¡Nuevo contrato de cliente: ${client.nombre} ${client.apellido} Plan: ${client.serviciosContratados}!`,
             html: html,
             attachments: [
