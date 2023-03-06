@@ -41,7 +41,7 @@ const crearReporte = async (client) => {
             "method": "get"
         }
         expressPath = `./documents/generated/${documentName}`
-        const contratoFile = downloadFile(secondUrl, secondOptions, expressPath)
+        const contratoFile = await downloadFile(secondUrl, secondOptions, expressPath)
         if (contratoFile) return [expressPath, crmPath]
     } else {
         console.log('Loss')
