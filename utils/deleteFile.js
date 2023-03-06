@@ -1,8 +1,8 @@
 const fs = require('fs')
 
-async function deleteFile(file) {
+function deleteThis(file) {
     try {
-        await fs.unlink(file, function (err) {
+        fs.unlink(file, function (err) {
             if (err) {
                 console.error(err.toString());
             } else {
@@ -13,6 +13,14 @@ async function deleteFile(file) {
         console.log(e.toString())
     }
 
+}
+
+const deleteFile = (file, res) => {
+    var stream = fs.createReadStream(file);
+    stream.pipe(res).once("close", function () {
+        stream.destroy(); // makesure stream closed, not close if download aborted.
+        deleteFile(file);
+    });
 }
 
 module.exports = deleteFile

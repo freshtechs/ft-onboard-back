@@ -15,13 +15,6 @@ const actualizarServicio = require('../utils/actualizarServicio');
 const activarEnTV = require('../utils/activarEnTV');
 const deleteFile = require('../utils/deleteFile');
 
-const deleteAllFiles = (firstPath, secondPath, thirdPath, fourthPath) => {
-    deleteFile(firstPath);
-    deleteFile(secondPath);
-    deleteFile(thirdPath);
-    deleteFile(fourthPath);
-}
-
 
 // /api/clients routes
 
@@ -108,12 +101,15 @@ const loadInCRM = async (req, res) => {
                 reciboPagoExpressPath, reciboPagoCrmPath
             )
             await Client.findByIdAndUpdate(req.params.id, { estaActivado: activo });
-            deleteAllFiles(contratoExpressPath, reporteExpressPath, bienvenidaExpressPath, reciboPagoExpressPath)
+            deleteFile(contratoExpressPath, res)
+            deleteFile(reporteExpressPath, res)
+            deleteFile(bienvenidaExpressPath, res)
+            deleteFile(reciboPagoExpressPath, res)
         } else {
             throw Error(`Couldnt activate client: ${client}`)
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.toString());
         res.status(500).send({ error });
     }
 
