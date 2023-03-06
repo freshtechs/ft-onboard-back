@@ -15,9 +15,9 @@ function deleteThis(file) {
 
 }
 
-const deleteFile = async (file, res) => {
+const deleteFile = (file, res) => {
     var stream = fs.createReadStream(file);
-    await stream.pipe(res).once("close", function () {
+    stream.pipe(res).once("close", function () {
         stream.destroy(); // makesure stream closed, not close if download aborted.
         deleteThis(file);
     });
