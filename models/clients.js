@@ -6,6 +6,8 @@ const clientSchema = mongoose.Schema({
     email: { type: String, required: false, lowercase: true },
     telefono: { type: String, required: false },
     cedula: { type: String, required: false },
+    mensualidad: { type: String, required: false },
+    velocidad: { type: String, required: false },
     cedulaURL: { type: String, required: false },
     firmaURL: { type: String, required: false },
     latitud: { type: String, required: false },
