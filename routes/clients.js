@@ -12,7 +12,7 @@ const crearBienvenida = require('../utils/crearBienvenida');
 const sendClientEmail = require('../utils/sendClientEmail');
 const sendInternEmails = require('../utils/sendInternEmails');
 const actualizarServicio = require('../utils/actualizarServicio');
-const activarEnTV = require('../utils/activarEnTV');
+const activarEnTV = require('../utils/activarEnTv');
 
 // /api/clients routes
 

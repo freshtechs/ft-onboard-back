@@ -1,7 +1,5 @@
 const fetch = require('node-fetch');
-const API_VIVO_URL = "https://API.vivoplay.net/FreshTechs/regusr/"
-const vivoUsername = "admFreshTechs"
-const vivoToken = "s8Y8H1hA5cj7CBKaWSYV0a5aoQKzwesTDpFv0wzrdZJxVxrkCj"
+
 
 const activarEnTV = async (client) => {
     const { nombre, apellido, email, cedula } = client;
@@ -10,8 +8,8 @@ const activarEnTV = async (client) => {
 
     let body = {
         "auth": {
-            "log": vivoUsername,
-            "tkn": vivoToken
+            "log": process.env.vivoUsername,
+            "tkn": process.env.vivoToken
         },
         "name": nombre,
         "lastName": apellido,
@@ -30,7 +28,7 @@ const activarEnTV = async (client) => {
         "body": JSON.stringify(body)
     }
 
-    let url = API_VIVO_URL
+    let url = process.env.API_VIVO_URL
     console.log(url, options)
     try {
         responseText = await fetch(url, options)
