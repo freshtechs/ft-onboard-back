@@ -15,7 +15,6 @@ const sendClientEmail = require('../utils/sendClientEmail');
 const sendInternEmails = require('../utils/sendInternEmails');
 const actualizarServicio = require('../utils/actualizarServicio');
 const activarEnTV = require('../utils/activarEnTV');
-const deleteFile = require('../utils/deleteFile');
 
 
 // /api/clients routes
