@@ -101,10 +101,10 @@ const loadInCRM = async (req, res) => {
                 reciboPagoExpressPath, reciboPagoCrmPath
             )
             await Client.findByIdAndUpdate(req.params.id, { estaActivado: activo });
-            deleteFile(contratoExpressPath, res)
-            deleteFile(reporteExpressPath, res)
-            deleteFile(bienvenidaExpressPath, res)
-            deleteFile(reciboPagoExpressPath, res)
+            await deleteFile(contratoExpressPath, res)
+            await deleteFile(reporteExpressPath, res)
+            await deleteFile(bienvenidaExpressPath, res)
+            await deleteFile(reciboPagoExpressPath, res)
         } else {
             throw Error(`Couldnt activate client: ${client}`)
         }
