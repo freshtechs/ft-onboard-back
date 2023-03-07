@@ -20,7 +20,7 @@ const activarEnTV = require('../utils/activarEnTV');
 // /api/clients routes
 
 const handleGetClients = async (req, res) => {
-    if (!req.user.esAdmin) return res.status(401).json({ message: "Auth Failed" });
+    // if (!req.user.esAdmin) return res.status(401).json({ message: "Auth Failed" });
     try {
         const data = await Client.find();
         return res.status(200).json(data);
@@ -141,7 +141,7 @@ const deletePDFSent = async (req, res) => {
         await fse.emptyDir('./documents/generated')
         return res.status(200).json('Sucesss');
     } catch (err) {
-        return res.status(500).json('Sucesss');
+        return res.status(500).json({ message: "Failed", error: `"${err}"` });
     }
 }
 
