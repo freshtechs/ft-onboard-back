@@ -35,7 +35,7 @@ const clientSchema = mongoose.Schema({
     fechaDeInstalacion: { type: String, required: false },
     notas: { type: String, required: false },
     totalRecaudado: { type: Number, required: false },
-    fechaDePago: { type: Date, required: false },
+    fechaDePago: { type: String, required: false },
     metodoDePago: { type: String, required: false },
     comprobanteURL: { type: String, required: false },
     numeroReferencia: { type: String, required: false },
