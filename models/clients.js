@@ -52,12 +52,14 @@ const clientSchema = mongoose.Schema({
     activoEnTV: { type: Boolean, required: false, default: false },
     activoEnCRM: { type: Boolean, required: false, default: false },
     estaActivado: { type: Boolean, required: false, default: false },
-    contratoExpressPath: { type: String, required: false, default: false },
-    bienvenidaExpressPath: { type: String, required: false, default: false },
-    reporteExpressPath: { type: String, required: false, default: false },
-    reciboPagoExpressPath: { type: String, required: false, default: false },
-    vendedor: { type: String, required: true }
+    contratoExpressPath: { type: String, required: false, default: '' },
+    bienvenidaExpressPath: { type: String, required: false, default: '' },
+    reporteExpressPath: { type: String, required: false, default: '' },
+    reciboPagoExpressPath: { type: String, required: false, default: '' },
+    vendedor: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 }, { timestamps: true })
+
+
 
 const Client = mongoose.model("client", clientSchema)
 

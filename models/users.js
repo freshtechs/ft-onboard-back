@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     esCoordinador: { type: Boolean, required: false, default: false },
     esExterno: { type: Boolean, required: false, default: false },
     compania: { type: String, required: false, default: "" },
+    clients: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Client' }]
 }, { timestamps: true })
 
 const User = mongoose.model("User", userSchema)

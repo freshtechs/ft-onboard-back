@@ -48,6 +48,7 @@ router.post("/register", async (req, res) => {
                     message: "Success",
                     token: "Bearer " + token,
                     user: {
+                        "_id": dbUser._id,
                         "email": dbUser.email,
                         "nombre": dbUser.nombre,
                         "apellido": dbUser.apellido,
@@ -113,6 +114,7 @@ router.post("/login", async (req, res) => {
                                         message: "Success",
                                         token: "Bearer " + token,
                                         user: {
+                                            "_id": dbUser._id,
                                             "email": dbUser.email,
                                             "nombre": dbUser.nombre,
                                             "apellido": dbUser.apellido,

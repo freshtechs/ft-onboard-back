@@ -21,11 +21,22 @@ const activarEnTV = require('../utils/activarEnTV');
 
 const handleGetClients = async (req, res) => {
     // if (!req.user.esAdmin) return res.status(401).json({ message: "Auth Failed" });
+    const vendedor = JSON.parse(req.query.vendedor)
+    const compania = vendedor.compania
+    let data;
     try {
-        const data = await Client.find();
+        if (compania !== 'Fresh Techs') {
+            const allClients = await Client.find({}).populate({ path: 'vendedor', select: '-password' })
+            data = allClients.filter((client) => {
+                return (client.vendedor.compania === compania && client.estaActivado === false)
+            })
+        } else {
+            data = await Client.find();
+        }
         return res.status(200).json(data);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error(error)
+        res.status(500).json(error)
     }
 };
 
@@ -136,19 +147,9 @@ const handleGetUniqueClient = async (req, res) => {
     return res.status(200).json(client);
 }
 
-const deletePDFSent = async (req, res) => {
-    try {
-        await fse.emptyDir('./documents/generated')
-        return res.status(200).json('Sucesss');
-    } catch (err) {
-        return res.status(500).json({ message: "Failed", error: `"${err}"` });
-    }
-}
-
 
 router.get("", verifyJWT, handleGetClients);
 router.post("", handleCreateClient);
-router.delete("", deletePDFSent);
 router.get("/:id", handleGetUniqueClient);
 router.put("/:id", handleUpdateClient);
 router.post('/:id', loadInCRM);
